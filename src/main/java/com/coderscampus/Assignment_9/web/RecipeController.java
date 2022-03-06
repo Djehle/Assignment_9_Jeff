@@ -1,8 +1,6 @@
 package com.coderscampus.Assignment_9.web;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
 import com.coderscampus.Assignment_9.domain.Recipe;
 import com.coderscampus.Assignment_9.service.FileService;
 
@@ -18,38 +16,26 @@ public class RecipeController {
 	@Autowired
 	private FileService fileService;
 	
-	@GetMapping("/gluten_free")
-	public List<Recipe> getGlutenFree () {
-		return fileService.getAllRecipes()
-						  .stream()
-						  .filter(Recipe::getGlutenFree)
-						  .collect(Collectors.toList());
+	@GetMapping("/gluten-free")
+	public List<Recipe> getList_GlutenFree () {
+		return fileService.getGlutenFree();
 	}
 	
 	@GetMapping("/vegan")
-	public List<Recipe> getVegan () {
-		return fileService.getAllRecipes()
-						  .stream()
-						  .filter(Recipe::getVegan)
-						  .collect(Collectors.toList());
+	public List<Recipe> getList_Vegan () {
+		return fileService.getVegan();
 	}
-	@GetMapping("/vegan_and_gluten_free")
-	public List<Recipe> getVegan_GlutenFree () {
-		return fileService.getAllRecipes()
-						  .stream()
-						  .filter(recipe -> recipe.getVegan() && recipe.getGlutenFree())
-						  .collect(Collectors.toList());
+	@GetMapping("/vegan-and-gluten-free")
+	public List<Recipe> getList_Vegan_GlutenFree () {
+		return fileService.getVeganGlutenFree();
 	}
 
 	@GetMapping("/vegetarian")
-	public List<Recipe> getVegetarian () {
-		return fileService.getAllRecipes()
-				  .stream()
-				  .filter(Recipe::getVegetarian)
-				  .collect(Collectors.toList());
+	public List<Recipe> getList_Vegetarian () {
+		return fileService.getVegetarian();
 	}
 
-	@GetMapping("/all_recipes")
+	@GetMapping("/all-recipes")
 	public List<Recipe> getAllRecipes () {
 		return fileService.getAllRecipes();
 	}
